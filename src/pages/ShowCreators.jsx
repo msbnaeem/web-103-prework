@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { supabase } from "../client"
 import Card from "../components/Card"
 import { useState } from "react"
@@ -17,9 +18,15 @@ function ShowCreators() {
       
   }, [])
 
-  return creators.map(creator => (
-    <Card key={creator.id} {...creator} />
-  ))
+  return (
+    <div>
+      {<Link to="/new"><button>New Creator</button></Link>}
+      {creators.map(creator => (
+        <Card key={creator.id} {...creator} />
+      ))}
+    </div>
+    
+)
 }
 
 export default ShowCreators
