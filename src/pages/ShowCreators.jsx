@@ -20,13 +20,22 @@ function ShowCreators() {
 
   return (
     <div>
-      {<Link to="/new"><button>New Creator</button></Link>}
-      {creators.map(creator => (
-        <Card key={creator.id} {...creator} />
-      ))}
+      <div className="bg-images">
+        {creators.map(creator => (
+          creator.imageURL && <img key={creator.id} src={creator.imageURL} className="bg-img" alt="" />
+        ))}
+      </div>
+      <div className="header">
+        <h1>Creatorverse</h1>
+        <Link to="/new"><button className="btn btn-primary">+ Add Creator</button></Link>
+      </div>
+      <div className="cards-grid">
+        {creators.map(creator => (
+          <Card key={creator.id} {...creator} />
+        ))}
+      </div>
     </div>
-    
-)
+  )
 }
 
 export default ShowCreators

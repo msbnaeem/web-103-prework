@@ -10,6 +10,7 @@ function EditCreator() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [url, setUrl] = useState('')
+  const [imageURL, setImageURL] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function EditCreator() {
       setName(data.name)
       setDescription(data.description)
       setUrl(data.url)
+      setImageURL(data.imageURL)
     }
     getCreator()
     
@@ -28,7 +30,7 @@ function EditCreator() {
   if (!creator) return <h1>Loading...</h1>
 
   async function handleUpdate() {
-    await supabase.from('creators').update({ name, description, url }).eq('id', id)
+    await supabase.from('creators').update({ name, description, url, imageURL }).eq('id', id)
     navigate('/')
   }
   
@@ -42,6 +44,7 @@ function EditCreator() {
       <input value={name} onChange={(e) => setName(e.target.value)} />
       <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
       <input value={url} onChange={(e) => setUrl(e.target.value)} />
+      <input value={imageURL} onChange={(e) => setImageURL(e.target.value)} placeholder="Image URL (optional)" />
       <button onClick={handleUpdate}>Submit</button>
       <button onClick={handleDelete}>Delete</button>
     </div>
